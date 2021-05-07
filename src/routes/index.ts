@@ -1,1 +1,9 @@
-export class Routes {}
+import { BookController } from "../controllers/bookController";
+
+export class Routes {
+  public bookController = new BookController();
+
+  public routes(app: any): void {
+    app.route("/books").get(this.bookController.getAllBooks);
+  }
+}
