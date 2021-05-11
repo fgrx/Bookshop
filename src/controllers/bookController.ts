@@ -1,9 +1,13 @@
-import { Request, Response } from "express";
+import { IBook } from "../interfaces/IBook";
+import mockBooks from "../../tests/mocks/books";
 
 export class BookController {
-  public getAllBooks(req: Request, res: Response) {
-    res.json({
-      message: "Hello World 2",
-    });
+  public getAllBooks(): IBook[] {
+    return mockBooks;
+  }
+
+  public getBookById(bookID: string): IBook {
+    const res = mockBooks.filter((book) => book.id === bookID);
+    return res[0];
   }
 }

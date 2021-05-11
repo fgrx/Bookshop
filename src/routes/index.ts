@@ -1,14 +1,12 @@
 import { Request, Response } from "express";
-import { BookController } from "../controllers/bookController";
+import { BookRoutes } from "./book";
 
 export class Routes {
-  public bookController = new BookController();
-
   public routes(app: any): void {
-    //app.route("/books").get(this.bookController.getAllBooks);
-
-    app.route("/books").get((req: Request, res: Response) => {
-      this.bookController.getAllBooks(req, res);
+    app.route("/").get((req: Request, res: Response) => {
+      res.json({ message: "welcome to my book app ! " });
     });
+
+    new BookRoutes(app);
   }
 }
