@@ -1,7 +1,7 @@
 import "../../src/interfaces/IBook";
 import { IBook } from "../../src/interfaces/IBook";
 
-const booksdb: IBook[] = [
+const books: IBook[] = [
   {
     id: "5s48s81",
     title: "Coder proprement",
@@ -144,4 +144,4 @@ const booksdb: IBook[] = [
   },
 ];
 
-export default booksdb;
+export default books;

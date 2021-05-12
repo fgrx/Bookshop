@@ -2,3 +2,24 @@ GET http://localhost:3002/
 
 ################################
 GET http://localhost:3002/books
+
+################################
+GET http://localhost:3002/books/lisdnf158
+
+################################
+POST http://localhost:3002/books
+content-type: application/json
+
+{
+    "title": "Mon livre de test",
+    "content": "Ceci est un livre de test",
+    "description": "Contenu complet",
+    "author": "Fabien",
+    "price": 20,
+    "quantity": 4,
+    "rating": 4,
+    "lang": "fr",
+    "image": "hello.jpg",
+    "top":true,
+    "promo":15
+}
