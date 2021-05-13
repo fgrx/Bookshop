@@ -7,5 +7,6 @@ export class DB implements IDB {
   getAllBooks = async () => mockBooks;
   getBookById = async (id: string) =>
     mockBooks.filter((book) => book.id === id)[0];
-  addBook = async (book: IBook | any) => book;
+  addBook = async (book: IBook) => book;
+  updateBook = async (book: IBook) => book;
 }

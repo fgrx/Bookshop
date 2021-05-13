@@ -1,6 +1,5 @@
 import { createConnection } from "typeorm";
 import { Book } from "../entities/Book";
-import { IBook } from "../interfaces/IBook";
 
 import { BookDB, IBookDB } from "./bookDB";
 
