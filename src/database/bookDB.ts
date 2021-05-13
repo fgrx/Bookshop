@@ -6,6 +6,7 @@ interface IBookDB {
   getBookById(bookID: string): Promise<IBook | any>;
   addBook(book: IBook): Promise<IBook>;
   updateBook(book: IBook): Promise<IBook>;
+  deleteBook(bookID: string): Promise<any>;
 }
 
 class BookDB implements IBookDB {
@@ -24,7 +25,6 @@ class BookDB implements IBookDB {
       await Book.insert(book);
       return book;
     } catch (e: any) {
-      console.log(">>> error", e);
       throw new Error(e);
     }
   }
@@ -38,7 +38,20 @@ class BookDB implements IBookDB {
       }
       return bookToUpdate;
     } catch (e: any) {
-      console.log(">>> error", e);
+      throw new Error(e);
+    }
+  }
+
+  public async deleteBook(bookID: string): Promise<any> {
+    try {
+      const bookEntity = await Book.findOne(bookID);
+      if (bookEntity) {
+        await Book.delete(bookID);
+        return `Book ${bookID} deleted`;
+      } else {
+        throw new Error("Book not found");
+      }
+    } catch (e: any) {
       throw new Error(e);
     }
   }

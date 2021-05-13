@@ -104,4 +104,13 @@ describe(">>> books routes", () => {
       .expect("content-type", /json/)
       .expect(422);
   });
+
+  it("should delete a book", () => {
+    const book = mockBooks[1];
+
+    return request(server.app)
+      .delete(`/books/${book.id}`)
+      .expect("content-type", /json/)
+      .expect(200);
+  });
 });
