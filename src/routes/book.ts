@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { IDB } from "../database";
-import Joi from "joi";
 import { bookValidationSchema } from "../validationSchemas";
-import { Book } from "../entities/Book";
 
 export class BookRoutes {
   constructor(app: any, db: IDB) {
