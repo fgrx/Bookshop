@@ -1,18 +1,16 @@
 import { Request, Response } from "express";
 import { IDB } from "../database";
-import Joi from "joi";
 import { bookValidationSchema } from "../validationSchemas";
-import { Book } from "../entities/Book";
 
 export class BookRoutes {
   constructor(app: any, db: IDB) {
     app.route("/books").get(async (req: Request, res: Response) => {
-      const bookList = await db.getAllBooks();
+      const bookList = await db.book.getAllBooks();
       res.json(bookList);
     });
 
     app.route("/books/:id").get(async (req: Request, res: Response) => {
-      const book = await db.getBookById(req.params.id);
+      const book = await db.book.getBookById(req.params.id);
 
       if (book) {
         res.json(book);
@@ -24,7 +22,7 @@ export class BookRoutes {
     app.route("/books").post(async (req: Request, res: Response) => {
       try {
         this.validateRequest(req.body);
-        const result = await db.addBook(req.body);
+        const result = await db.book.addBook(req.body);
         res.json(result);
       } catch (e) {
         res.status(422).json({ error: e.toString() });
@@ -34,7 +32,7 @@ export class BookRoutes {
     app.route("/books/:id").put(async (req: Request, res: Response) => {
       try {
         this.validateRequest(req.body);
-        const result = await db.updateBook(req.body);
+        const result = await db.book.updateBook(req.body);
         res.json(result);
       } catch (e) {
         res.status(422).json({ error: e.toString() });
@@ -43,7 +41,7 @@ export class BookRoutes {
 
     app.route("/books/:id").delete(async (req: Request, res: Response) => {
       try {
-        const result = await db.deleteBook(req.params.id);
+        const result = await db.book.deleteBook(req.params.id);
         res.json(result);
       } catch (e) {
         res.status(400).json({ error: e.toString() });

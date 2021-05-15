@@ -1,6 +1,5 @@
 import express from "express";
 import { IDB } from "./database";
-//import * as bodyParser from "body-parser";
 import { Routes } from "./routes/index";
 import cors from "cors";
 
