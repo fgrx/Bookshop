@@ -1,4 +1,3 @@
-import "../../src/interfaces/IBook";
 import { IBook } from "../../src/interfaces/IBook";
 
 const books: IBook[] = [

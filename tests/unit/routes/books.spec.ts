@@ -1,7 +1,6 @@
 import request from "supertest";
 import Server from "../../../src/app";
 import { IBook } from "../../../src/interfaces/IBook";
-import books from "../../mocks/books";
 import mockBooks from "../../mocks/books";
 
 import { DB } from "../../mocks/src/database";
@@ -14,7 +13,7 @@ describe(">>> books routes", () => {
     return request(server.app)
       .get("/books")
       .expect("content-type", /json/)
-      .expect(200, books);
+      .expect(200, mockBooks);
   });
 
   it("should return one book", () => {
@@ -26,9 +25,9 @@ describe(">>> books routes", () => {
   });
 
   it("should return 404", () => {
-    const bookToFind = mockBooks[1];
+    const nonExistingID = "abcdefg";
     return request(server.app)
-      .get(`/books/abcdefg`)
+      .get(`/books/${nonExistingID}`)
       .expect("content-type", /json/)
       .expect(404);
   });

@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
 
 @Entity()
-export class Book extends BaseEntity {
+export class User extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
@@ -10,4 +10,7 @@ export class Book extends BaseEntity {
 
   @Column()
   password!: string;
+
+  @Column()
+  isAdmin!: boolean;
 }

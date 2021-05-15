@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IDB } from "../database";
-import { BookRoutes } from "./book";
+import { BookRoutes } from "./bookRoutes";
+import { AuthRoutes } from "./authRoutes";
 
 export class Routes {
   public routes(app: any, db: IDB): void {
@@ -9,5 +10,6 @@ export class Routes {
     });
 
     new BookRoutes(app, db);
+    new AuthRoutes(app, db);
   }
 }
