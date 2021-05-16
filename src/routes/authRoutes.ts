@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { IDB } from "../database";
 import { ICredentials } from "../interfaces/ICredentials";
@@ -6,22 +7,34 @@ import { ICredentials } from "../interfaces/ICredentials";
 export class AuthRoutes {
   constructor(app: any, db: IDB) {
     app.route("/auth").post(async (req: Request, res: Response) => {
+      const credentials: ICredentials = req.body;
+
       try {
-        const credentials: ICredentials = req.body;
+        const user = await db.user.getUserByEmail(credentials.email);
 
-        const result = await db.user.getUserByEmail(credentials.email);
-
-        if (!result) {
+        if (!user) {
           res.status(403).json({ error: "Invalid credentials" });
         }
 
         const isPasswordCorrect = await this.comparePassword(
           credentials.password,
-          result.password
+          user.password
         );
 
         if (isPasswordCorrect) {
-          res.json({ message: "Valid credentials" });
+          const tokenSecret = process.env.JWT_SECRET!;
+          tokenSecret; //?
+          const expireIn = 24 * 60 * 60;
+
+          const result = { email: user.email, isAdmin: user.isAdmin };
+
+          const token = jwt.sign({ result }, tokenSecret, {
+            expiresIn: expireIn,
+          });
+
+          res
+            .header("Authorization", "Bearer " + token)
+            .json({ message: "Valid credentials" });
         } else {
           res.status(403).json({ error: "Invalid credentials" });
         }
@@ -39,6 +52,8 @@ export class AuthRoutes {
     password: string,
     hash: string
   ): Promise<boolean> {
-    return await bcrypt.compare(password, hash);
+    const isPasswordOk = await bcrypt.compare(password, hash);
+
+    return isPasswordOk;
   }
 }
