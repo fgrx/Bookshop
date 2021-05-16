@@ -14,15 +14,11 @@ const credentials: ICredentials = {
 describe(">>> users route", () => {
   let token;
 
-  it("should return a user", () => {
-    return request(server.app)
-      .post("/auth")
-      .send(credentials)
-      .expect("content-type", /json/)
-      .expect(200)
-      .end(function (err, res) {
-        token = res.body.token;
-      });
+  it("should return a token", async () => {
+    const result = await request(server.app).post("/auth").send(credentials);
+
+    expect(result.status).toBe(200);
+    token = result.header.authorization;
   });
 
   it("should not return a user", () => {
