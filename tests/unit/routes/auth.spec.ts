@@ -12,16 +12,21 @@ const credentials: ICredentials = {
 };
 
 describe(">>> users route", () => {
+  let token;
+
   it("should return a user", () => {
     return request(server.app)
       .post("/auth")
       .send(credentials)
       .expect("content-type", /json/)
-      .expect(200);
+      .expect(200)
+      .end(function (err, res) {
+        token = res.body.token;
+      });
   });
 
   it("should not return a user", () => {
-    const wrongCredentials = {
+    const wrongCredentials: ICredentials = {
       email: "admin@admin.com",
       password: "124",
     };
