@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import { IDB } from "../database";
-import { ICredentials } from "../database/authDB";
+import { ICredentials } from "../interfaces/ICredentials";
 
 export class AuthRoutes {
   constructor(app: any, db: IDB) {
@@ -9,7 +9,7 @@ export class AuthRoutes {
       try {
         const credentials: ICredentials = req.body;
 
-        const result = await db.auth.getUserByEmail(credentials.email);
+        const result = await db.user.getUserByEmail(credentials.email);
 
         if (!result) {
           res.status(403).json({ error: "Invalid credentials" });

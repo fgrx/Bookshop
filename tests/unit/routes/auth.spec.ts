@@ -1,9 +1,7 @@
 import request from "supertest";
 import Server from "../../../src/app";
-import { ICredentials } from "../../../src/database/authDB";
-import { IUser } from "../../../src/interfaces/IUser";
-import mockUsers from "../../mocks/users";
 import { DB } from "../../mocks/src/database";
+import { ICredentials } from "../../../src/interfaces/ICredentials";
 
 const db = new DB();
 const server = new Server(db);
