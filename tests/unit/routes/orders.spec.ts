@@ -10,8 +10,6 @@ const db = new DB();
 const server = new Server(db);
 
 describe(">>>Orders", () => {
-  it("should add an order", () => {});
-
   it("should list all orders", () => {
     return request(server.app)
       .get("/orders")
@@ -21,6 +19,7 @@ describe(">>>Orders", () => {
 
   it("should add a new order", () => {
     const order: IOrder = { total: 124, items: [mockBooks[0], mockBooks[1]] };
+
     return request(server.app)
       .post("/orders")
       .send(order)
@@ -36,6 +35,4 @@ describe(">>>Orders", () => {
       .expect("content-type", /json/)
       .expect(500);
   });
-
-  it("should not authorize to display orders", () => {});
 });

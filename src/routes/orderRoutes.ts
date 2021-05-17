@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { IDB } from "../database";
+import { IOrder } from "../interfaces/IOrder";
 import { orderValidationSchema } from "../validationSchemas";
 
 export class OrderRoutes {
@@ -12,7 +13,7 @@ export class OrderRoutes {
           order.items = parsedItems;
           return order;
         });
-        orders; //?
+        orders;
         res.json(ordersFromDB);
       } catch (e) {
         res.status(500).json({ error: e.toString() });
@@ -25,8 +26,9 @@ export class OrderRoutes {
         const order = req.body;
         order.items = JSON.stringify(order.items);
         try {
-          const result = await db.order.addOrder(order);
-          res.json(result);
+          const orderAdded = await db.order.addOrder(order);
+
+          res.json(orderAdded);
         } catch (e) {
           res.status(500).json({ error: e.toString() });
         }

@@ -23,7 +23,6 @@ export class AuthRoutes {
 
         if (isPasswordCorrect) {
           const tokenSecret = process.env.JWT_SECRET!;
-          tokenSecret; //?
           const expireIn = 24 * 60 * 60;
 
           const result = { email: user.email, isAdmin: user.isAdmin };

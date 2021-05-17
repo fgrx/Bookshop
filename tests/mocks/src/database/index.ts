@@ -26,6 +26,7 @@ class UserDB implements IUserDB {
 class OrderDB implements IOrderDB {
   getOrders = async () => mockOrders;
   addOrder = async (order: IOrder) => {
+    order.id = "12RERE";
     mockOrders.push(order);
     return order;
   };
