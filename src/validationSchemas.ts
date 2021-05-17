@@ -16,4 +16,10 @@ const bookValidationSchema = Joi.object().keys({
   top: Joi.boolean().optional(),
 });
 
-export { bookValidationSchema };
+const orderValidationSchema = Joi.object().keys({
+  id: Joi.string().optional(),
+  total: Joi.number().min(0),
+  items: Joi.array().min(1),
+});
+
+export { bookValidationSchema, orderValidationSchema };
