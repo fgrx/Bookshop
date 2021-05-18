@@ -18,7 +18,7 @@ describe(">>>Orders", () => {
       .post("/auth")
       .send(goodCredentials)
       .end((err, response) => {
-        token = response.header.authorization; //?
+        token = response.header.authorization;
         done();
       });
   });

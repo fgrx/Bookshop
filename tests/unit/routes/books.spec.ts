@@ -5,10 +5,24 @@ import mockBooks from "../../mocks/books";
 
 import { DB } from "../../mocks/src/database";
 
+import { goodCredentials } from "../../mocks/credentials";
+
 const db = new DB();
 const server = new Server(db);
 
 describe(">>> books routes", () => {
+  let token = "";
+
+  beforeAll((done) => {
+    request(server.app)
+      .post("/auth")
+      .send(goodCredentials)
+      .end((err, response) => {
+        token = response.header.authorization;
+        done();
+      });
+  });
+
   it("should return a list of books", () => {
     return request(server.app)
       .get("/books")
@@ -48,6 +62,7 @@ describe(">>> books routes", () => {
     return request(server.app)
       .post("/books")
       .send(book)
+      .set("Authorization", `${token}`)
       .set("Accept", "application/json")
       .expect("content-type", /json/)
       .expect(200, book);
@@ -66,6 +81,7 @@ describe(">>> books routes", () => {
       .post("/books")
       .send(book)
       .set("Accept", "application/json")
+      .set("Authorization", `${token}`)
       .expect("content-type", /json/)
       .expect(422);
   });
@@ -79,6 +95,7 @@ describe(">>> books routes", () => {
     return request(server.app)
       .put(`/books/${updatedBook.id}`)
       .send(updatedBook)
+      .set("Authorization", `${token}`)
       .set("Accept", "application/json")
       .expect("content-type", /json/)
       .expect(200)
@@ -99,6 +116,7 @@ describe(">>> books routes", () => {
     return request(server.app)
       .put(`/books/${book.title}`)
       .send(book)
+      .set("Authorization", `${token}`)
       .set("Accept", "application/json")
       .expect("content-type", /json/)
       .expect(422);
@@ -109,6 +127,7 @@ describe(">>> books routes", () => {
 
     return request(server.app)
       .delete(`/books/${book.id}`)
+      .set("Authorization", `${token}`)
       .expect("content-type", /json/)
       .expect(200);
   });
