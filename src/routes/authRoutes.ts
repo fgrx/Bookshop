@@ -6,7 +6,7 @@ import { ICredentials } from "../interfaces/ICredentials";
 
 export class AuthRoutes {
   constructor(app: any, db: IDB) {
-    app.route("/auth").post(async (req: Request, res: Response) => {
+    app.post("/auth", async (req: Request, res: Response) => {
       const credentials: ICredentials = req.body;
 
       try {

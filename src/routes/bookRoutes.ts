@@ -4,12 +4,12 @@ import { bookValidationSchema } from "../validationSchemas";
 
 export class BookRoutes {
   constructor(app: any, db: IDB) {
-    app.route("/books").get(async (req: Request, res: Response) => {
+    app.get("/books", async (req: Request, res: Response) => {
       const bookList = await db.book.getAllBooks();
       res.json(bookList);
     });
 
-    app.route("/books/:id").get(async (req: Request, res: Response) => {
+    app.get("/books/:id", async (req: Request, res: Response) => {
       const book = await db.book.getBookById(req.params.id);
 
       if (book) {
@@ -19,7 +19,7 @@ export class BookRoutes {
       }
     });
 
-    app.route("/books").post(async (req: Request, res: Response) => {
+    app.post("/books", async (req: Request, res: Response) => {
       try {
         this.validateRequest(req.body);
         const result = await db.book.addBook(req.body);
@@ -29,7 +29,7 @@ export class BookRoutes {
       }
     });
 
-    app.route("/books/:id").put(async (req: Request, res: Response) => {
+    app.put("/books/:id", async (req: Request, res: Response) => {
       try {
         this.validateRequest(req.body);
         const result = await db.book.updateBook(req.body);
@@ -39,7 +39,7 @@ export class BookRoutes {
       }
     });
 
-    app.route("/books/:id").delete(async (req: Request, res: Response) => {
+    app.delete("/books/:id", async (req: Request, res: Response) => {
       try {
         const result = await db.book.deleteBook(req.params.id);
         res.json(result);

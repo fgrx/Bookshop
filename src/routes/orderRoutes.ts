@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import { IDB } from "../database";
-import { IOrder } from "../interfaces/IOrder";
 import { orderValidationSchema } from "../validationSchemas";
+import { Security } from "../middlewares/security";
 
 export class OrderRoutes {
   constructor(app: any, db: IDB) {
-    app.route("/orders").get(async (req: Request, res: Response) => {
+    const security = new Security();
+
+    app.get("/orders", async (req: Request, res: Response) => {
       try {
         const ordersFromDB = await db.order.getOrders();
         const orders = ordersFromDB.forEach((order) => {
@@ -20,7 +22,7 @@ export class OrderRoutes {
       }
     });
 
-    app.route("/orders").post(async (req: Request, res: Response) => {
+    app.post("/orders", async (req: Request, res: Response) => {
       const validation = orderValidationSchema.validate(req.body);
       if (!validation.error) {
         const order = req.body;
