@@ -5,7 +5,8 @@ import { IDB } from "../database";
 import { ICredentials } from "../interfaces/ICredentials";
 
 export class AuthRoutes {
-  secretJWT = process.env.JWT_SECRET!;
+  jwtSecret: string = process.env.JWT_SECRET!;
+  jwtExpiresIn = Number(process.env.JWT_EXPIREIN) | 86400;
 
   constructor(app: any, db: IDB) {
     app.post("/auth", async (req: Request, res: Response) => {
@@ -24,12 +25,10 @@ export class AuthRoutes {
         );
 
         if (isPasswordCorrect) {
-          const expireIn = 24 * 60 * 60;
-
           const result = { email: user.email, isAdmin: user.isAdmin };
 
-          const token = jwt.sign({ result }, this.secretJWT, {
-            expiresIn: expireIn,
+          const token = jwt.sign({ result }, this.jwtSecret, {
+            expiresIn: this.jwtExpiresIn,
           });
 
           res

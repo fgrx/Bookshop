@@ -5,31 +5,18 @@ import { DB } from "../../mocks/src/database";
 import mockOrders from "../../mocks/orders";
 import mockBooks from "../../mocks/books";
 import { IOrder } from "../../../src/interfaces/IOrder";
-import { ICredentials } from "../../../src/interfaces/ICredentials";
+import { goodCredentials } from "../../mocks/credentials";
 
 const db = new DB();
 const server = new Server(db);
 
 describe(">>>Orders", () => {
-  const credentials: ICredentials = {
-    email: "admin@admin.com",
-    password: "123456",
-  };
-
   let token = "";
-
-  // const getToken = async (): Promise<string> => {
-  //   const result = await request(server.app).post("/auth").send(credentials);
-  //   return result.header.authorization;
-  // };
-
-  // const token = getToken();
-  // token; //?
 
   beforeAll((done) => {
     request(server.app)
       .post("/auth")
-      .send(credentials)
+      .send(goodCredentials)
       .end((err, response) => {
         token = response.header.authorization; //?
         done();
