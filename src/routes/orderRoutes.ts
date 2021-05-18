@@ -7,20 +7,24 @@ export class OrderRoutes {
   constructor(app: any, db: IDB) {
     const security = new Security();
 
-    app.get("/orders", async (req: Request, res: Response) => {
-      try {
-        const ordersFromDB = await db.order.getOrders();
-        const orders = ordersFromDB.forEach((order) => {
-          const parsedItems = JSON.parse(order.items);
-          order.items = parsedItems;
-          return order;
-        });
-        orders;
-        res.json(ordersFromDB);
-      } catch (e) {
-        res.status(500).json({ error: e.toString() });
+    app.get(
+      "/orders",
+      security.checkJWT,
+      async (req: Request, res: Response) => {
+        try {
+          const ordersFromDB = await db.order.getOrders();
+          const orders = ordersFromDB.forEach((order) => {
+            const parsedItems = JSON.parse(order.items);
+            order.items = parsedItems;
+            return order;
+          });
+          orders;
+          res.json(ordersFromDB);
+        } catch (e) {
+          res.status(500).json({ error: e.toString() });
+        }
       }
-    });
+    );
 
     app.post("/orders", async (req: Request, res: Response) => {
       const validation = orderValidationSchema.validate(req.body);

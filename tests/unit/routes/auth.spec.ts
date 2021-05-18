@@ -16,12 +16,11 @@ describe(">>> users route", () => {
 
   it("should return a token", async () => {
     const result = await request(server.app).post("/auth").send(credentials);
-
     expect(result.status).toBe(200);
     token = result.header.authorization;
   });
 
-  it("should not return a user", () => {
+  it("should not return a token", () => {
     const wrongCredentials: ICredentials = {
       email: "admin@admin.com",
       password: "124",
