@@ -6,7 +6,7 @@ import { OrderRoutes } from "./orderRoutes";
 
 export class Routes {
   public routes(app: any, db: IDB): void {
-    app.route("/").get((req: Request, res: Response) => {
+    app.get("/", (req: Request, res: Response) => {
       res.json({ message: "welcome to my book app ! " });
     });
 

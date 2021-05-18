@@ -44,6 +44,16 @@ content-type: application/json
 get http://localhost:3002/orders
 
 ################################
+get http://localhost:3002/orders
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJpc0FkbWluIjp0cnVlfSwiaWF0IjoxNjIxMzQ5NTQ0LCJleHAiOjE2MjEzNDk2MzB9.NDiMc8Z4GWD01MmV9zF2W9ZyFKuT7DRNhx8NsDH4hFc
+
+
+################################
+
+get http://localhost:3002/orders
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJpc0FkbWluIjp0cnVlfSwiaWF0IjoxNjIxMzQwNzcwLCJleHAiOjE2MjE0MjcxNzB9.hoOPhWg_YZ-Db2j_OBZPQcSt50FK7uZr9f5Qzd0lSY8
+
+################################
 POST http://localhost:3002/orders/
 content-type: application/json
 

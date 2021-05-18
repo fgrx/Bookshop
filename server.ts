@@ -1,5 +1,4 @@
 import { DB } from "./src/database";
-
 const dotenv = require("dotenv");
 
 dotenv.config();
