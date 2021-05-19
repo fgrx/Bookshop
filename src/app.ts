@@ -16,7 +16,7 @@ class Server {
       "http://localhost:3001",
       "http://localhost:3002",
       "http://localhost:8080",
-      "https://bookshopvue.netlifyapp.com",
+      "https://bookshopvue.netlify.app",
     ];
 
     const options: cors.CorsOptions = {
