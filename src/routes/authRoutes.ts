@@ -25,15 +25,18 @@ export class AuthRoutes {
         );
 
         if (isPasswordCorrect) {
-          const result = { email: user.email, isAdmin: user.isAdmin };
+          const userInfosToReturn = {
+            email: user.email,
+            isAdmin: user.isAdmin,
+          };
 
-          const token = jwt.sign({ result }, this.jwtSecret, {
+          const token = jwt.sign({ userInfosToReturn }, this.jwtSecret, {
             expiresIn: this.jwtExpiresIn,
           });
 
-          res
-            .header("Authorization", "Bearer " + token)
-            .json({ message: "Valid credentials" });
+          const result = Object.assign(userInfosToReturn, { token });
+
+          res.header("Authorization", "Bearer " + token).json(result);
         } else {
           res.status(403).json({ error: "Invalid credentials" });
         }

@@ -21,6 +21,7 @@ class Server {
 
     const options: cors.CorsOptions = {
       origin: allowedOrigins,
+      allowedHeaders: ["Content-Type", "Authorization"],
     };
 
     this.app.use(cors(options));
