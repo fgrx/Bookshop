@@ -4,7 +4,7 @@ GET http://localhost:3002/
 GET http://localhost:3002/books
 
 ################################
-GET http://localhost:3002/books/lisdnf158
+GET http://localhost:3002/books/83d09bf0-9572-4b26-b98b-0cef735ac716
 
 ################################
 GET http://localhost:3002/books/zzzzzzzz
@@ -12,19 +12,18 @@ GET http://localhost:3002/books/zzzzzzzz
 ################################
 POST http://localhost:3002/books
 content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJpc0FkbWluIjp0cnVlfSwiaWF0IjoxNjIxNDA5NTU4LCJleHAiOjE2MjE0OTU5NTh9.BRH2w-zJ84JamnyUOleW62dSTLUCvEw-QuhplkiO0bA
 
 {
-    "title": "Mon livre de test",
-    "content": "Ceci est un livre de test",
-    "description": "Contenu complet",
-    "author": "Fabien",
-    "price": 20,
-    "quantity": 4,
-    "rating": 4,
-    "lang": "fr",
-    "image": "hello.jpg",
-    "top":true,
-    "promo":15
+      "title": "Pro JavaScript Design Patterns",
+      "author": "Dustin Diaz",
+      "content": "As a web developer, you'll already know that JavaScript is a powerful language, allowing you to add an impressive array of dynamic functionality to otherwise static web sites. But there is more power waiting to be unlocked--JavaScript is capable of full object-oriented capabilities, and by applying object-oriented principles, best practices, and design patterns to your code, you can make it more powerful, more efficient, and easier to work with alone or as part of a team. With Pro JavaScript Design Patterns, you'll start with the basics of object-oriented programming in JavaScript applicable to design patterns, including making JavaScript more expressive, inheritance, encapsulation, information hiding, and more. With that covered, you can kick-start your JavaScript development in the second part of the book, where you'll find detail on how to implement and take advantage of several design patterns in JavaScript, including composites, decorators, façades, adapters, and many more.",
+      "description": "How to code efficiently with design patterns in Javascript",
+      "image": "https://images-na.ssl-images-amazon.com/images/I/517DBDKJx0L._SX376_BO1,204,203,200_.jpg",
+      "price": 40.9,
+      "quantity": 2,
+      "rating": 2,
+      "lang": "en"
 }
 
 ################################

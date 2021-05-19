@@ -3,7 +3,7 @@ import Joi from "joi";
 
 const bookValidationSchema = Joi.object().keys({
   id: Joi.string().optional(),
-  title: Joi.string().min(3).max(40).required(),
+  title: Joi.string().min(3).max(100).required(),
   description: Joi.string().min(10).max(150).required(),
   content: Joi.string().min(10).max(20000).required(),
   author: Joi.string().min(3).max(40).required(),
@@ -12,7 +12,7 @@ const bookValidationSchema = Joi.object().keys({
   quantity: Joi.number().required(),
   lang: Joi.string().valid("fr", "en").required(),
   rating: Joi.number().min(0).max(5).required(),
-  promo: Joi.number().optional(),
+  discount: Joi.number().optional(),
   top: Joi.boolean().optional(),
 });
 

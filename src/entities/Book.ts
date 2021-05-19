@@ -39,5 +39,5 @@ export class Book extends BaseEntity {
     type: "int",
     nullable: true,
   })
-  promo!: number;
+  discount!: number;
 }

@@ -10,5 +10,5 @@ export interface IBook {
   lang: string;
   rating: number;
   top?: boolean;
-  promo?: number;
+  discount?: number;
 }
