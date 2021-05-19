@@ -1,11 +1,12 @@
 {
   "name": "bookshop",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Node.js app with Typescript, Jest and TypeORM",
   "main": "server.js",
   "scripts": {
     "start": "node ./dist/server.js",
     "build": "rimraf dist && tsc",
+    "postinstall": "tsc",
     "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' server.ts",
     "test": "jest --no-cache"
   },
