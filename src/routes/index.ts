@@ -3,6 +3,7 @@ import { IDB } from "../database";
 import { BookRoutes } from "./bookRoutes";
 import { AuthRoutes } from "./authRoutes";
 import { OrderRoutes } from "./orderRoutes";
+import { CommentRoutes } from "./commentRoutes";
 
 export class Routes {
   public routes(app: any, db: IDB): void {
@@ -13,5 +14,6 @@ export class Routes {
     new BookRoutes(app, db);
     new AuthRoutes(app, db);
     new OrderRoutes(app, db);
+    new CommentRoutes(app, db);
   }
 }
