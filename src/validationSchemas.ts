@@ -22,4 +22,10 @@ const orderValidationSchema = Joi.object().keys({
   items: Joi.array().min(1),
 });
 
-export { bookValidationSchema, orderValidationSchema };
+const commentValidationSchema = Joi.object().keys({
+  title: Joi.string().min(4).required(),
+  content: Joi.string().min(5).required(),
+  bookID: Joi.string().required(),
+});
+
+export { bookValidationSchema, orderValidationSchema, commentValidationSchema };

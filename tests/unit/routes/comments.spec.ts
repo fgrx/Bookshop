@@ -39,4 +39,17 @@ describe(">>>> Comments", () => {
         expect(response.body.title).toEqual(comment.title);
       });
   });
+
+  it("should not add a comment", () => {
+    const comment = {
+      title: "commentaire de test",
+      bookID: mockBooks[0].id,
+    };
+
+    return request(server.app)
+      .post("/comments")
+      .send(comment)
+      .expect("content-type", /json/)
+      .expect(422);
+  });
 });
