@@ -10,7 +10,7 @@ import { IUserDB } from "../../../../src/database/userDB";
 import { IOrderDB } from "../../../../src/database/orderDB";
 import { IOrder } from "../../../../src/interfaces/IOrder";
 import { ICommentDB } from "../../../../src/database/commentDB";
-import { IComment } from "../../../../src/interfaces/IComment";
+import { IMockComment } from "../../../../src/interfaces/IComment";
 
 class BookDB implements IBookDB {
   getAllBooks = async () => mockBooks;
@@ -44,7 +44,7 @@ class CommentDB implements ICommentDB {
   getComments = async (bookID: string) =>
     mockComments.filter((comment) => comment.bookID === bookID);
 
-  addComment = async (comment: IComment) => {
+  addComment = async (comment: IMockComment) => {
     mockComments.push(comment);
     return comment;
   };

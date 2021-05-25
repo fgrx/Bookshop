@@ -3,3 +3,7 @@ export interface IComment {
   title: string;
   content: string;
 }
+
+export interface IMockComment extends IComment {
+  bookID: string;
+}
